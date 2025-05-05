@@ -1,0 +1,59 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# C extensions
+*.pyd
+*.dll
+
+# Distribution / packaging
+*.egg-info/
+build/
+dist/
+.eggs/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# PyTorch and training artifacts
+*.pt
+*.pth
+*.pkl
+*.ckpt
+*.log
+runs/  # TensorBoard logs
+
+# Datasets and intermediate files
+docs/
+datasets/
+*.npz
+*.npy
+*.csv
+*.json
+*.zip
+
+# Environment and IDE settings
+.env
+.venv/
+venv/
+env/
+ENV/
+*.env
+*.DS_Store
+legal-document-search-engine/
+
+# VSCode
+.vscode/
+
+# Colab artifacts
+
+drive/
+sample_data/
+
+# System files
+Thumbs.db
+.DS_Store
+
+# PyTorch Geometric cache (optional)
+torch_geometric/data/.cache/

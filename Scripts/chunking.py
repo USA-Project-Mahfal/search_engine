@@ -21,12 +21,37 @@ def optimized_hybrid_chunking(docs_df, semantic_min_size=150, semantic_max_size=
     ]
     compiled_patterns = [re.compile(pattern) for pattern in section_patterns]
 
-    # Read the text file and create a DataFrame
-    with open('chunk_input/Maintenance/AtnInternationalInc_20191108_10-Q_EX-10.1_11878541_EX-10.1_Maintenance Agreement.txt', 'r', encoding='utf-8') as file:
-        text_content = file.read()
+    # Read all text files from the chunk_input folders
+    import os
+    import glob
+
+    data = []
+    id_counter = 1
     
-    # Create a DataFrame from the text content
-    docs_df = pd.DataFrame({'id': [1], 'text': [text_content], 'name': ['AtnInternationalInc_10-Q'], 'category': ['Maintenance']})
+    folders = ['License_Agreements', 'Maintenance', 'Service', 'Sponsorship', 'Strategic Alliance']
+    
+    for folder in folders:
+        folder_path = os.path.join('chunk_input', folder)
+        txt_files = glob.glob(os.path.join(folder_path, '*.txt'))
+        
+        for file_path in txt_files:
+            with open(file_path, 'r', encoding='utf-8') as file:
+                text_content = file.read()
+                
+            file_name = os.path.basename(file_path)
+            name = os.path.splitext(file_name)[0]
+            
+            data.append({
+                'id': id_counter,
+                'text': text_content,
+                'name': name,
+                'category': folder
+            })
+            id_counter += 1
+    
+    # Create DataFrame from all files
+    docs_df = pd.DataFrame(data)
+    docs_df.to_csv('docs_df.csv', index=False)
 
     for _, doc in tqdm(docs_df.iterrows(), total=len(docs_df), desc="Creating hybrid chunks"):
         doc_id_val = doc['id']

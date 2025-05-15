@@ -16,10 +16,13 @@ def retrieve_documents(query: str, category: str):
     # Create retriever
     retriever = vectorstore.as_retriever()
 
-    # Get results with category filter
-    results = retriever.invoke(
-        query,
-        filters={"category": category}
-    )
+    # Get results with or without category filter
+    if category == "Skip":
+        results = retriever.invoke(query)
+    else:
+        results = retriever.invoke(
+            query,
+            filters={"category": category}
+        )
 
     return results

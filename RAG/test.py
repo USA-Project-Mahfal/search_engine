@@ -6,7 +6,7 @@ def chat_with_bot():
     session = requests.Session()
     
     print("Chat with the cricket team selection assistant (type 'quit' to exit)")
-    print("Select category (License_Agreements/Maintenance/Service/Sponsorship/Strategic Alliance):")
+    print("Select category (License_Agreements/Maintenance/Service/Sponsorship/Strategic Alliance/Skip):")
     category = input().lower().strip()
     print("=" * 50)
     

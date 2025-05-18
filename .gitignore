@@ -19,7 +19,6 @@ dist/
 # PyTorch and training artifacts
 *.pt
 *.pth
-*.pkl
 *.ckpt
 *.log
 runs/  # TensorBoard logs
